@@ -1,11 +1,11 @@
 <template>
-  <div :class="['todo-item', todo.completed ? 'completed' : '']">
+  <div :class="['todo-item', todoValue.completed && 'completed']">
     <input 
       type="checkbox"
       class="toggle"
-      v-model="todo.completed"
+      v-model="todoValue.completed"
     >
-    <label>{{todo.content}}</label>
+    <label>{{ todoValue.content }}</label>
     <button class="destory" @click="deleteTodo"></button>
   </div>
 </template>
@@ -13,15 +13,15 @@
 <script>
 export default {
   props: {
-    todo: {
+    todoValue: {
       type: Object,
-      required: true,
-    }
+      required: true
+    },
   },
   methods: {
-    deleteTodo() {
-      this.$emit('del', this.todo.id)
-    }
+   deleteTodo () {
+     this.$emit('del', this.todoValue.id)
+   }
   }
 }
 </script>
